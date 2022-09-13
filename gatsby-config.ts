@@ -29,7 +29,7 @@ const config: GatsbyConfig = {
     options: {
       projectId: 'llb7r28p',
       dataset: 'production',
-      watchMode: true
+      watchMode: process.env.NODE_ENV !== 'production',
     }
   },
   {

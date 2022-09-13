@@ -13,11 +13,10 @@ export default function Footer() {
 
 
       return (
-        // <FooterContext.Provider value={{consentHeight: this.state.consentHeight, setConsentHeight: this.setConsentHeight.bind(this), isOpen: this.state.open, toggleOpen: this.toggle.bind(this) }}>
           <Wrap >
 
           </Wrap>
-        // </FooterContext.Provider>
+
       )
 }
 

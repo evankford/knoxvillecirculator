@@ -1,6 +1,5 @@
 import * as React from "react";
 import { palette } from "../../theme";
-import FooterContext, {FooterContextModel} from "../../store/FooterContext";
 import styled from "styled-components";
 import ErrorIcon from "./ErrorIcon";
 
@@ -84,16 +83,10 @@ interface ConsentProps {
 
 }
 export default function ConsentCheckbox(props:ConsentProps) {
-    const { setConsentHeight} =  React.useContext(FooterContext);
-    const ref = React.useRef<HTMLLabelElement>(null);
 
-    React.useLayoutEffect(()=> {
-      if (ref.current) {
-        setConsentHeight(ref.current.getBoundingClientRect().height);
-      }
-    })
+
       return (
-          <label ref={ref}>
+          <label >
             <CheckBox onChange={props.handleChange} type="checkbox" id="consent" name="consent"></CheckBox>
             <CheckMain>
               {props.hasError && <ErrorIcon/>}
