@@ -115,7 +115,11 @@ class SignupForm extends Component {
         console.log(j)
         return;
       }
+    } else {
+        this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: false, errorMessage:undefined}));
+      return;
     }
+
   }
 
   handleEmailChange(e: ChangeEvent<HTMLInputElement>) {
