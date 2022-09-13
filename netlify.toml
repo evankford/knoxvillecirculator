@@ -7,5 +7,3 @@ package = "@netlify/plugin-gatsby"
 
 [functions]
 node_bundler = "esbuild"
-
-external_node_modules = ["node-fetch"]
