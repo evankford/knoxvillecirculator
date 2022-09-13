@@ -98,23 +98,23 @@ class SignupForm extends Component {
 
   async handleSubmit(evt:FormEvent<HTMLFormElement>) {
     console.log('Submitting');
-    this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: true,errorMessage:undefined}));
     evt.preventDefault();
+    this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: true,errorMessage:undefined}));
     if (this.state.emailValid && this.state.consentAccepted) {
       console.log("Trying to submit ")
+      this.setState(prev=>Object.assign(prev, { submitting: true }));
       // try to submit
-    }
+      const resp = await fetch(`/api/signup/${this.state.emailValue}`);
+      const j:{success: boolean} = await resp.json();
 
-    const resp = await fetch(`/api/signup/${this.state.emailValue}`);
-    const j:{success: boolean} = await resp.json();
-
-    if (j.success == true ){
-      this.setState(prev=>Object.assign(prev, { success:true, submitted: true, submitting: false, errorMessage:undefined}));
-      return;
-    } else {
-      this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: false, errorMessage:"Something went wrong. Please try again."}));
-      console.log(j)
-      return;
+      if (j.success == true ){
+        this.setState(prev=>Object.assign(prev, { success:true, submitted: true, submitting: false, errorMessage:undefined}));
+        return;
+      } else {
+        this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: false, errorMessage:"Something went wrong. Please try again."}));
+        console.log(j)
+        return;
+      }
     }
   }
 
