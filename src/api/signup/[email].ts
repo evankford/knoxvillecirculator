@@ -1,4 +1,4 @@
-const client = require( '@mailchimp/mailchimp_marketing');
+import client from '@mailchimp/mailchimp_marketing';
 import { GatsbyFunctionRequest, GatsbyFunctionResponse } from "gatsby"
 
 export default async function handler(
