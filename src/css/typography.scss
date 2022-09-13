@@ -1,0 +1,95 @@
+
+@font-face {
+  font-family: 'Flexa';
+  src: url('../fonts/GTFlexaTrial-Th.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-Th.woff') format('woff')
+  ;
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: 'Flexa';
+  src: url('../fonts/GTFlexaTrial-Rg.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-Rg.woff') format('woff')
+  ;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Flexa';
+  src: url('../fonts/GTFlexaTrial-RgIt.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-RgIt.woff') format('woff')
+  ;
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Flexa';
+  src: url('../fonts/GTFlexaTrial-Bd.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-Bd.woff') format('woff')
+  ;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Flexa';
+  src: url('../fonts/GTFlexaTrial-BdIt.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-BdIt.woff') format('woff')
+  ;
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FlexaEx';
+  src: url('../fonts/GTFlexaTrial-ExpBd.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-ExpBd.woff') format('woff')
+  ;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+
+}
+@font-face {
+  font-family: 'FlexaEx';
+  src: url('../fonts/GTFlexaTrial-ExpRg.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-ExpRg.woff') format('woff')
+  ;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'FlexaEx';
+  src: url('../fonts/GTFlexaTrial-ExpMd.woff2') format('woff2'),
+    url('../fonts/GTFlexaTrial-ExpMd.woff') format('woff')
+  ;
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: 'Flexa', Helvetica, arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6,.h0 {
+  b,strong {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: 'FlexaEx';
+    letter-spacing: 0.03em
+  }
+}
+
+h2, .h2 {
+  font-size: 2rem ;
+}
