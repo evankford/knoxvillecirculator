@@ -52,3 +52,11 @@ const NotFoundPage = () => {
 }
 
 export default NotFoundPage
+
+export const Head= ()=>{
+  return (
+    <>
+      <title>Circulator | Not Found</title>
+    </>
+  )
+}

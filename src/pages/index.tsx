@@ -21,7 +21,8 @@ class IndexPage extends React.Component {
 
 export default IndexPage
 
-
-export const Head=()=>{
-  <SEO />
+export const Head = () =>{
+  return (
+    <SEO />
+  )
 }

@@ -6,9 +6,6 @@ const H = styled.h1`
   font-weight: normal;
   line-height: 1.5;
   font-weight: 300;
-  @media screen and (max-width: 600px) {
-    text-align: justify;
-  }
   strong {
     font-size: 1.2em;
   }

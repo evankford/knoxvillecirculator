@@ -26,7 +26,7 @@ const Line = styled.div`
   border-bottom: 2px solid currentColor;
   position: relative;
   padding: 10px 0 2px 0;
-  margin: 0 12px 0 0;
+  margin: 0 0 0 0;
     /* @media screen and (min-width: 1000px) {
       padding-left: calc(100px  + 4vw);
     } */

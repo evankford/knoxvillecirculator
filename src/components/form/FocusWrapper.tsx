@@ -33,6 +33,9 @@ const LogoWrapper = styled.div`
   transform-origin: top center;
   transform: translateY(-3px);
   transition: transform 300ms ease;
+  @media (max-width:600px){
+    margin: auto 10px auto -15px;
+  }
   ${Wrap}:focus-within &  {
     transform: translateY(0) scale(1);
   }

@@ -17,6 +17,10 @@ const CheckMain = styled.div`
   padding: 10px 0 10px 30px;
   line-height: 1.4;
   font-size: 15px;
+  @media (max-width: 600px) {
+    font-size: 13px;
+    padding-left: 25px;
+  }
   margin:  0 0;
   position: relative;
   font-weight: 200;
@@ -86,7 +90,7 @@ export default function ConsentCheckbox(props:ConsentProps) {
 
 
       return (
-          <label >
+          <label style={{display: 'block'}}>
             <CheckBox onChange={props.handleChange} type="checkbox" id="consent" name="consent"></CheckBox>
             <CheckMain>
               {props.hasError && <ErrorIcon/>}

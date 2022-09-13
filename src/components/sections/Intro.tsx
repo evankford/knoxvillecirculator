@@ -32,11 +32,16 @@ const Content = styled.div`
   position: relative;
   flex: 1 1 300px;
   margin: auto;
-  max-width: 600px;
+  max-width: 500px;
   padding: 30px;
   @media screen and (min-width: 1000px) {
     padding: 50px;
     margin: auto;
+  }
+  @media screen and (max-width: 600px){
+    padding-left: 5px;
+    padding-right: 5px;
+
   }
 `
 

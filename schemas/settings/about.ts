@@ -25,8 +25,6 @@ const generalSettings = defineType({
         {type: 'block'}
       ]
     },
-
-
   ]
 })
 

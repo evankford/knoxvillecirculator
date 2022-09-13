@@ -21,7 +21,7 @@ const swing = keyframes`
 
 const Logo = styled.figure`
   flex: 1 1 700px;
-  max-width: 40vmax;
+  max-width: clamp(150px, 40vmax,  60vw);
   @media (min-width: 800px) {
     max-width: 50vw;
 
