@@ -4,8 +4,10 @@ require("dotenv").config({
 })
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Circulator`,
-    siteUrl: `https://www.yourdomain.tld`
+    title: `Knoxville Circulator`,
+    description: 'A periodical newsletter and zine based media organization, for and by Knoxvillians looking for simple ways to engage with local politics without sacrificing their day-jobs, social lives, free time, and mental stability.',
+    siteUrl: `https://knoxvillecirculator.com`,
+    image:  '/social-image.jpg',
   },
   flags: {
     FUNCTIONS: true
