@@ -1,5 +1,8 @@
 import type { GatsbyConfig } from "gatsby";
-require("dotenv").config({
+
+import dotenv from "dotenv";
+
+dotenv.config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 const config: GatsbyConfig = {
