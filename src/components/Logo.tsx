@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled, {keyframes} from "styled-components";
 import Tilt from "react-parallax-tilt"
-import Svg from "../images/seafoam.svg";
+import Svg from "../images/bandp.svg";
 
 const swing = keyframes`
   0% {
@@ -26,7 +26,7 @@ const Logo = styled.figure`
     max-width: 50vw;
 
   }
-  margin: 0 0 0  -2%;
+  margin: 0;
   /* transform: perspective(400px) rotate3d(0, 1, 0, 2deg);
   transform-style: preserve-3d; */
   /* animation: ${swing} 6s ease-in-out alternate-reverse infinite; */

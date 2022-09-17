@@ -18,6 +18,25 @@ const eventDocument = defineType({
       type: 'string',
       name: 'subtitle',
       title: 'Subtitle',
+    },
+    {
+      type: 'array',
+      name: 'blurb',
+      title: 'Blurb',
+      of: [
+         {
+          type: 'block',
+         }
+      ]
+    },
+    {
+      type: 'image',
+      name: 'image',
+    },
+    {
+      type: 'boolean',
+      name: 'aboutFeatured',
+      title: 'Feature in about section',
     }
   ]
 })

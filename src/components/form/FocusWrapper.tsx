@@ -17,8 +17,7 @@ const Wrap = styled.div`
   transition: transform 300ms ease;
   /* transform: translateY(40px); */
   flex: 1 1 auto;
-  /* background: ${palette.black}; */
-  color: ${palette.white};
+  color: inherit;
   /* &:focus-within {
     transform: translateY(0)
   } */

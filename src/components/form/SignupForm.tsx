@@ -2,7 +2,8 @@ import React, {Component, createRef, type FormEvent, type ChangeEvent, useRef, M
 import styled from "styled-components";
 import EmailInput from "./EmailInput";
 import ArrowSubmit from "./ArrowSubmit";
-import ConsentCheckbox from "./ConsentCheckbox";
+import ConsentCheckbox from "./Checkbox";
+import TagSelector from "./TagSelector";
 
 import { validate } from "email-validator";
 import FocusWrapper from "./FocusWrapper";
@@ -15,6 +16,11 @@ const Form = styled.form`
 flex: 1 1 auto;
 /* display: flex; */
 max-width: 370px;
+transition: opacity 200ms ease;
+&.disabled{
+  opacity: 0.6;
+  pointer-events: none;
+}
 /* flex-wrap: wrap; */
 `
 const Line = styled.div`
@@ -50,12 +56,19 @@ const Line = styled.div`
   }
 `
 
+const P = styled.p`
+  margin: 10px 0;
+  font-weight: 300;
+  a { color: inherit; font-family:'FlexaEx'; font-weight:500;}
+`
+
 interface SignupFormState {
   submitted: boolean,
   success:boolean,
   submitting: boolean,
   emailValue: string
   errorMessage: string | undefined
+  tags:Array<'newsletter' | 'events'>
   emailValid: boolean;
   consentAccepted: boolean
   consentText: undefined | string
@@ -75,18 +88,19 @@ class SignupForm extends Component {
       success: false,
       submitted: false,
       submitting: false,
+      tags:['newsletter'],
       emailValue: '',
       emailValid: false,
       errorMessage: undefined,
-      consentAccepted: false,
-      consentText: "Yep! Send me around 1 email a month. " ,
+      consentAccepted: true,
+      consentText: "We send around 1 email a month. " ,
       consentUrl:  'https://circulatorknoxville.com/privacy'
     }
 
 
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleConsentChange = this.handleConsentChange.bind(this)
     this.handleEmailChange = this.handleEmailChange.bind(this)
+    this.handleTagsChange = this.handleTagsChange.bind(this)
   }
 
 
@@ -100,11 +114,17 @@ class SignupForm extends Component {
     console.log('Submitting');
     evt.preventDefault();
     this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: true,errorMessage:undefined}));
-    if (this.state.emailValid && this.state.consentAccepted) {
+    if (this.state.emailValid && this.state.tags.length> 0) {
       console.log("Trying to submit ")
       this.setState(prev=>Object.assign(prev, { submitting: true }));
       // try to submit
-      const resp = await fetch(`/api/signup/${this.state.emailValue}`);
+      const resp = await fetch(`/api/signup/${this.state.emailValue}`, {
+        method: "POST",
+        body: JSON.stringify({tags: this.state.tags}),
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      });
       const j:{success: boolean} = await resp.json();
 
       if (j.success == true ){
@@ -127,10 +147,31 @@ class SignupForm extends Component {
       return Object.assign(prev,{ changed: true, emailValue: e.target.value, emailValid: validate(e.target.value)});
     });
   }
-  handleConsentChange(e: ChangeEvent<HTMLInputElement>) {
-    this.setState((prev)=> {
-      return Object.assign(prev, {changed: true, consentAccepted: e.target.checked});
-    });
+
+
+  handleTagsChange(e:ChangeEvent<HTMLInputElement>) {
+    if (!e.target ||  !e.target.id || !['newsletter','events'].includes(e.target.id)) {
+      return;
+    }
+    this.setState((prev:SignupFormState)=>{
+      let tags = prev.tags;
+      console.log(e.target.id, e.target.checked)
+       if (!e.target ||  !e.target.id || (e.target.id != 'events' && e.target.id != 'newsletter')) {
+          return prev;
+        }
+      if (e.target.checked ) {
+        if(tags.includes(e.target.id)){
+          return prev
+        }
+        tags.push(e.target.id);
+      } else {
+        if (!tags.includes(e.target.id)){
+          return prev
+        }
+        tags.splice(tags.indexOf(e.target.id), 1);
+      }
+      return Object.assign(prev, {tags});
+    })
   }
 
 
@@ -149,17 +190,18 @@ class SignupForm extends Component {
     return (
       <>
       <FocusWrapper toFocus={this.inputRef}>
-          <Form onSubmitCapture={this.handleSubmit}>
+          <Form onSubmitCapture={this.handleSubmit} className={this.state.submitting ? 'disabled' : ''}>
             <Line>
               <EmailInput focusElRef={this.inputRef} hasError={this.state.submitted && !this.state.emailValid} handleChange={this.handleEmailChange} value={this.state.emailValue}/>
               <ArrowSubmit submitting={this.state.submitting} />
             </Line>
-              <ConsentCheckbox hasError={this.state.submitted && !this.state.consentAccepted} handleChange={this.handleConsentChange} consentText={this.state.consentText} consentUrl={this.state.consentUrl} consentLinkText="That's all we do with your data."/>
+              <TagSelector handleChange={this.handleTagsChange} tags={this.state.tags}/>
+              <P>We send around 1 email a month. <a href="/privacy">That's it</a></P>
           </Form>
 
       </FocusWrapper>
       <FormErrors errorMessage={this.state.errorMessage}/>
-      <ValidationErrors submitted={this.state.submitted} consentAccepted={this.state.consentAccepted} validEmail={this.state.emailValid}/>
+      <ValidationErrors submitted={this.state.submitted} validEmail={this.state.emailValid}/>
       </>
     );
   }

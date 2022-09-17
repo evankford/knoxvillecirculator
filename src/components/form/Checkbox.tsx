@@ -14,7 +14,7 @@ const CheckBox = styled.input`
 
 const width = '15px';
 const CheckMain = styled.div`
-  padding: 10px 0 10px 30px;
+  padding: 10px 0 10px 25px;
   line-height: 1.4;
   font-size: 15px;
   @media (max-width: 600px) {
@@ -23,7 +23,6 @@ const CheckMain = styled.div`
   }
   margin:  0 0;
   position: relative;
-  font-weight: 200;
   display: flex;
   &::before {
     content:'';
@@ -32,9 +31,9 @@ const CheckMain = styled.div`
     height: ${width};
     box-sizing: border-box;
     transform: translateY(-50%);
-    border: 1px solid white;
+    border: 2px solid currentColor;
     position: absolute;
-    top: calc(50% - 5px);
+    top: 50%;
     left: 0;
     transition: transform 200ms ease;
   }
@@ -44,7 +43,7 @@ const CheckMain = styled.div`
     font-weight: bold;
     display: block;
     position: absolute;
-    top: calc(50% - 5px);
+    top: 50%;
     transform: translateY(-50%);
     left: 0;
     width: ${width};
@@ -52,7 +51,6 @@ const CheckMain = styled.div`
     line-height: ${width};
     box-sizing: border-box;
     height: ${width};
-    background: white;
     opacity: 0;
     transition: opacity 200ms ease, transform 200ms ease;
     color: ${palette.red};
@@ -60,10 +58,9 @@ const CheckMain = styled.div`
 
   ${CheckBox}:focus + &  {
     border-bottom: 2px solid rgba(white, 0.5);
-    &::before, &::after {
-      transform: translateY(-54%);
-      box-shadow: 0 0 5px black
+    &::before{
 
+      box-shadow: 0 0 2px -2px currentColor
     }
     &::before {
       border-width: 3px;
@@ -79,10 +76,12 @@ const CheckMain = styled.div`
 import ConsentLink from "./ConsentLink";
 
 interface ConsentProps {
-  consentText:string | undefined,
+  id?: string,
+  checked?: boolean
+  text:string | undefined,
   hasError: boolean | undefined,
-  consentLinkText:string|undefined,
-  consentUrl: string|undefined,
+  linkText?:string|undefined,
+  url?: string|undefined,
   handleChange: React.ChangeEventHandler<HTMLInputElement>
 
 }
@@ -91,14 +90,14 @@ export default function ConsentCheckbox(props:ConsentProps) {
 
       return (
           <label style={{display: 'block'}}>
-            <CheckBox onChange={props.handleChange} type="checkbox" id="consent" name="consent"></CheckBox>
+            <CheckBox checked={props.checked ? true : false} onChange={props.handleChange} type="checkbox" id={props.id ? props.id : 'consent'} name={props.id ? props.id : 'consent'}></CheckBox>
             <CheckMain>
               {props.hasError && <ErrorIcon/>}
               <span>
-              { props.consentText &&
-                <span>{props.consentText}</span>
+              { props.text &&
+                <span>{props.text}</span>
               }
-              <ConsentLink  text={props.consentLinkText} url={props.consentUrl}/>
+              <ConsentLink  text={props.linkText} url={props.url}/>
               </span>
             </CheckMain>
           </label>

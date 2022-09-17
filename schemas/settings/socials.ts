@@ -4,7 +4,7 @@ import { defineType } from "sanity";
 
 const socialSettings = defineType({
   type: 'document',
-  name: "socials",
+  name: "socialSettings",
   title:"Social Settings",
   fields: [
     {
@@ -19,13 +19,20 @@ const socialSettings = defineType({
       type: 'url'
     },
     {
-      name:'image',
+      name: 'icon',
+      title: 'Square Icon',
+      description: 'Shows on browsers and emails.',
       type: 'image',
+    },
+    {
+      name: 'image',
       title: 'Image',
+      description: 'Shows on default share links and site previews',
+      type: 'image',
       options: {
-        hotspot: true
+        hotspot: true,
       }
-    }
+    },
   ]
 })
 

@@ -28,7 +28,7 @@ const Inner = styled.div<SectionOuterProps>`
   max-width: ${ props => props.contentWidth == 'full' ? '100%' :
    props.contentWidth == 'wide' ? 'clamp(900px, calc(780px + 15vw), 1350px)' :
    props.contentWidth == 'small' ? 'clamp(600px, calc(550px + 9vw), 1000px)' :
-   'clamp(800px, calc(600px + 12vw), 1180px)'
+   'clamp(800px, calc(600px + 12vw), 1280px)'
   };
 `;
 

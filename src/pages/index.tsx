@@ -1,6 +1,6 @@
 
 import * as React from "react"
-import Intro from "../components/sections/Intro"
+import Signup from "../components/sections/Signup"
 import Layout from "../components/Layout"
 import {SEO} from "../components/Seo";
 
@@ -12,7 +12,7 @@ class IndexPage extends React.Component {
       <Layout>
         <main>
           <title>Home Page</title>
-          <Intro />
+          <Signup />
         </main>
       </Layout>
     )
@@ -20,6 +20,7 @@ class IndexPage extends React.Component {
   };
 
 export default IndexPage
+
 
 export const Head = () =>{
   return (

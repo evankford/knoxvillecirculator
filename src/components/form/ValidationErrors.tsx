@@ -5,7 +5,7 @@ import ConsentError from './ConsentError';
 interface ErrorProps {
   submitted: boolean
   validEmail:boolean,
-  consentAccepted: boolean
+  consentAccepted?: boolean
 }
 
 const ErrorWrap = styled.div`
@@ -20,11 +20,11 @@ const ErrorWrap = styled.div`
 `
 
 export default function Errors(props:ErrorProps ) {
-  if (props.submitted && (!props.validEmail || !props.consentAccepted)) {
+  if (props.submitted && (!props.validEmail)) {
     return (
       <ErrorWrap>
         <EmailError error={!props.validEmail} />
-        <ConsentError error={!props.consentAccepted} />
+        {/* <ConsentError error={!props.consentAccepted} /> */}
       </ErrorWrap>
     )
   }

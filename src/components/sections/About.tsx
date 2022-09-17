@@ -1,18 +1,17 @@
 import { useStaticQuery, graphql } from "gatsby"
-import * as React from "react";
+import React from "react";
 import {PortableText} from '@portabletext/react';
-import { palette } from "../../theme";
 import SectionOuter from "../layouts/SectionOuter";
 
 import TitleH1 from "../pt/titleH1";
 import MainLogo from "../Logo";
 import styled from "styled-components";
 import SignupLogo from "../form/SignupLogo";
-import SignupForm from "../form/Signup";
+import SignupForm from "../form/SignupForm";
 
-const q = graphql`query MyQuery {
-  sanityIntro {
-    heading {
+const q = graphql`query AboutSection {
+  sanityAboutSettings {
+    blurb {
       _type
       style
       list
@@ -34,9 +33,11 @@ const Content = styled.div`
   margin: auto;
   max-width: 500px;
   padding: 30px;
-  @media screen and (min-width: 1000px) {
-    padding: 50px;
+  @media screen and (min-width: 1100px) {
+    flex-basis: 450px;
+    padding-left: 70px;
     margin: auto;
+    max-width: 600px;
   }
   @media screen and (max-width: 600px){
     padding-left: 5px;
@@ -47,8 +48,9 @@ const Content = styled.div`
 
 const Wrap = styled.div`
   display: flex;
+  color: var(--color-pink);
   flex-wrap: wrap;
-  background: rgb(var(--color-background));
+  background: rgb(var(--color-whitePink));
   align-content:center;
   justify-content: center;
   padding: 18px;
@@ -62,20 +64,18 @@ const Wrap = styled.div`
 
 export default function Intro() {
   const data:any = useStaticQuery(q);
+  console.log(data.sanityAboutSettings.blurb);
   return (
-    <SectionOuter fullHeight contentWidth="full" background={`linear-gradient(to bottom, ${palette.reddish}, ${palette.red})`} lightText>
+    <SectionOuter fullHeight contentWidth="full" background={`var(--color-seafoam)`}>
       <Wrap>
         <MainLogo/>
         <Content>
+          <TitleH1>
+
           <PortableText
-              value={data.sanityIntro.heading}
-              components={{
-                block: {
-                  //@ts-ignore React.Reactnode is weird?
-                h1: ({children})=> <TitleH1>{ children }</TitleH1>,
-              }}
-            }
+              value={data.sanityAboutSettings.blurb}
             />
+          </TitleH1>
             <SignupForm/>
         </Content>
       </Wrap>

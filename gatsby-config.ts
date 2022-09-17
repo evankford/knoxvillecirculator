@@ -12,9 +12,6 @@ const config: GatsbyConfig = {
     siteUrl: `https://knoxvillecirculator.com`,
     image:  '/social-image.jpg',
   },
-  flags: {
-    FUNCTIONS: true
-  },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
@@ -52,12 +49,11 @@ const config: GatsbyConfig = {
   "gatsby-plugin-react-svg",
   "gatsby-plugin-sass",
   "gatsby-plugin-styled-components",
-  "gatsby-plugin-react-helmet",
   "gatsby-plugin-sitemap",
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      "icon": "src/images/icon.png"
+      "icon": "src/images/square.png"
     }
   }, "gatsby-plugin-image","gatsby-plugin-sharp", "gatsby-transformer-sharp",
   {

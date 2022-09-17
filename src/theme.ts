@@ -1,12 +1,12 @@
-import { createTheme } from "@shopify/restyle";
 
 const palette = {
   white: '#F7F7F7',
-  whitePink: '#fcdcdc',
+  whitePink: '#fff4f4',
+  grayPink: '#fbe7e7',
   seafoam: '#009e84',
   black: '#260505',
-  red: '#E5242D',
-  reddish: '#F66D6D',
+  red: '#f07a7a',
+  reddish: '#ff8686',
   pureWhite: '#FFFFFF',
   pureBlack: '#000000',
 }
