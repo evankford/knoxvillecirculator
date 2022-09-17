@@ -12,8 +12,6 @@ const H = styled.h1`
   font-weight: 300;
 
 `
-
-
 export default function H1(props:{children:ReactNode}){
   return(
     <H>{props.children}</H>

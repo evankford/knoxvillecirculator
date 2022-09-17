@@ -6,22 +6,16 @@ import SectionOuter from "../layouts/SectionOuter";
 import TitleH1 from "../pt/titleH1";
 import MainLogo from "../Logo";
 import styled from "styled-components";
-import SignupLogo from "../form/SignupLogo";
 import SignupForm from "../form/SignupForm";
 
 const q = graphql`query AboutSection {
   sanityAboutSettings {
-    blurb {
-      _type
-      style
-      list
-      children {
-        _key
-        marks
-        _type
-        text
-      }
-    }
+    title
+    _rawDescription
+  }
+  sanityEventSettings {
+    _rawDescription
+
   }
 }` ;
 
@@ -62,20 +56,21 @@ const Wrap = styled.div`
 `
 
 
-export default function Intro() {
+export default function About() {
   const data:any = useStaticQuery(q);
   console.log(data.sanityAboutSettings.blurb);
   return (
-    <SectionOuter fullHeight contentWidth="full" background={`var(--color-seafoam)`}>
+    <SectionOuter fullHeight contentWidth="full" background={`var(--color-whitePink)`}>
       <Wrap>
-        <MainLogo/>
+        <h2>{data.sanityAboutSettings.title}</h2>
         <Content>
-          <TitleH1>
 
           <PortableText
-              value={data.sanityAboutSettings.blurb}
+              value={data.sanityAboutSettings._rawDescription}
             />
-          </TitleH1>
+            <PortableText
+              value={data.sanityEventSettings._rawDescription}
+            />
             <SignupForm/>
         </Content>
       </Wrap>

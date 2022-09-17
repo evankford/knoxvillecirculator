@@ -1,52 +1,34 @@
 
-import * as React from "react";
+import React, {Component, useState, type ComponentProps, type ReactNode} from "react";
 import MenuContext from "../store/menuContext";
 import "normalize.css";
 import "../css/base.scss";
 
 import Header from "../components/Header"
 import Footer from "../components/Footer"
-import BaseStyles from "../globalStyles";
+import Signup from "./sections/Signup";
 type LayoutProps = {
-  children: JSX.Element[]
+  children: ReactNode
+  hideSignup?:true
 }
 
-type MenuState = {
-    isOpen:boolean,
-}
+export default function Layout(props:LayoutProps){
+  const [isOpen, setOpen]= useState(false);
 
-class Layout extends React.Component   {
-  children: JSX.Element[];
-  toggleMenu: ()=>void
-  state: MenuState
 
-constructor(props:LayoutProps) {
-    super(props)
-    this.children = props.children;
-
-    this.state = {
-      isOpen: false
-    };
-
-    this.toggleMenu = () => {
-      console.log("Toggling menu?");
-      this.setState((state:MenuState)=>({
-        isOpen: !state.isOpen,
-      }));
-    }
+  function toggle() {
+    setOpen(isOpen);
   }
+  return (
+    <MenuContext.Provider value={{ isOpen, toggle }}>
+      <Header />
+      { props.children }
 
-  render() {
-    return (
-      <MenuContext.Provider value={{ isOpen: this.state.isOpen, toggle: this.toggleMenu }}>
-        <Header />
-        { this.children }
-
-        {/* <BaseStyles/> */}
-        <Footer />
-      </MenuContext.Provider>
-    );
-  }
+      {/* <BaseStyles/> */}
+      { !props.hideSignup &&
+        <Signup/>
+      }
+      <Footer />
+    </MenuContext.Provider>
+  );
 }
-
-export default Layout;

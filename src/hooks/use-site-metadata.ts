@@ -9,22 +9,20 @@ export const useSiteMetadata = () => {
   const input = useStaticQuery(graphql`
     query SiteInfo {
       sanityAboutSettings{
-        _rawDescription
+        _rawBlurb
       }
-      sanitySocials {
+      sanitySocialSettings {
         _rawImage,
         _rawIcon,
       }
     }
   `)
 
-  console.log(input);
-
   let data ={
     title: 'Knoxville Circulator',
     siteUrl: 'https://knoxvillecirculator.com',
-    // description: toPlainText(input.sanityAboutSettings._rawDescription),
-    // image: builder.image(input.sanitySocials._rawImage)
+    description: toPlainText(input.sanityAboutSettings._rawBlurb),
+    image: builder.image(input.sanitySocialSettings._rawImage).width(1600).height(900).crop('center').url(),
   }
 
   return data;

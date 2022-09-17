@@ -15,7 +15,7 @@ export const SEO:SEOCreator = ({title, description, image, pathname, children}) 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    image: `${siteUrl}${image || defaultImage }`,
+    image: `${image || defaultImage }`,
     url: `${siteUrl}${pathname || ``}`,
   }
   return (
