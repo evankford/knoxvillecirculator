@@ -5,17 +5,6 @@ import { resolve } from "path";
 
 export const createPages: GatsbyNode['createPages']  = async ({graphql, actions})=> {
   const { createRedirect, createPage  } = actions;
-  createRedirect({
-    fromPath:'/studio',
-    toPath:'https://knoxvillecirculator.sanity.studio',
-    statusCode: 200,
-  })
-
-  createRedirect({
-    fromPath:'/cry-cleanse-flow',
-    toPath:'/events/cry-cleanse-flow',
-    statusCode: 200,
-  })
 
   const eventData = await graphql<EventDataBuilderQuery>(`
     query eventDataBuilder {
@@ -43,15 +32,30 @@ export const createPages: GatsbyNode['createPages']  = async ({graphql, actions}
           if (!edge.node.slug?.current) {
             return;
           }
-          const path = `/events/${edge.node.slug.current}`
+          const path = `${edge.node.slug.current}`
           const templateName = edge.node.template || 'general';
           createPage({
             path,
-            component: resolve(__dirname, `./src/templates/events/${templateName}.tsx`),
-            context: { slug: edge.node.slug.current },
+            component: resolve(__dirname, `./src/templates/events.tsx`),
+            context: { slug: edge.node.slug.current , template: templateName},
           })
         }
       )
   }
+
+  createRedirect({
+    force:true,
+    isPermanent: true,
+    fromPath:'/test',
+    toPath:'/test2',
+  })
+
+  createRedirect({
+     force:true,
+    isPermanent: true,
+    fromPath:'/cry-cleanse-flow',
+    toPath:'/events/cry-cleanse-flow',
+  })
+
 
 }

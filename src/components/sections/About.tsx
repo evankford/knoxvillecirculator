@@ -264,7 +264,7 @@ export default function About() {
           start: 'top 90%',
           end: '100%-=250px top',
           onEnterBack: ()=>{  if(window.innerWidth > 900){ uu.reverse().then(()=>aa.play())}},
-          onLeave: ()=>{  if(window.innerWidth > 900){aa.reverse().then(()=>uu.play())}else{ uu.play();}},
+          onLeave: ()=>{  aa.reverse().then(()=>uu.play())},
         },
       });
 

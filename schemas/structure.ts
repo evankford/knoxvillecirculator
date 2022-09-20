@@ -6,8 +6,6 @@ import {BiUser} from "react-icons/bi"
 import {BsCalendarEvent} from "react-icons/bs";
 import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 import type { ListItem, ListItemBuilder, StructureBuilder , ConfigContext} from "sanity/desk";
-// const definedSections: [string, string][] =
-// [['intro', 'Intro']];
 const definedSettings: [string, string, IconType][] =
 [ ['aboutSettings', 'About Circulator', FiSettings],  ['eventSettings', 'About Events', FiInfo] , ['socialSettings', 'Social Settings', IoShareSocialOutline]];
 const orderables: [string, string, IconType][] =

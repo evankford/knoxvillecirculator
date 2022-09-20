@@ -1,14 +1,10 @@
 import { defineType } from "sanity";
-import {BsCalendarEvent} from "react-icons/bs";
-import { orderRankField } from '@sanity/orderable-document-list';
 
 const eventDocument = defineType({
   type: 'document',
-  name: 'event',
-  icon: BsCalendarEvent,
-  title: 'Event',
+  name: 'page',
+  title: 'Page',
   fields: [
-    orderRankField({type: 'person'}),
     {
       type: 'string',
       name: 'title',
@@ -29,10 +25,6 @@ const eventDocument = defineType({
       type: 'image',
       name:'image',
       validation: R=>R.required()
-    },
-    {
-      type: 'eventDetails',
-      name: 'eventDetails'
     },
     {
       type: 'array',
@@ -60,10 +52,6 @@ const eventDocument = defineType({
           {
             title: "General",
             value: "general"
-          },
-          {
-            title: "Cry Cleanse Flow",
-            value: "cry-cleanse-flow"
           }
         ]
       }

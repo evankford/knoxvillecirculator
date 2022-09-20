@@ -414,6 +414,7 @@ export type SanityEvent = SanityDocument & Node & {
   _key?: Maybe<Scalars['String']>;
   orderRank?: Maybe<Scalars['String']>;
   title?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
   slug?: Maybe<SanitySlug>;
   image?: Maybe<SanityImage>;
   eventDetails?: Maybe<Array<Maybe<SanitySingleEventDetail>>>;
@@ -1622,6 +1623,7 @@ export type QuerySanityEventArgs = {
   _key?: InputMaybe<StringQueryOperatorInput>;
   orderRank?: InputMaybe<StringQueryOperatorInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
+  subtitle?: InputMaybe<StringQueryOperatorInput>;
   slug?: InputMaybe<SanitySlugFilterInput>;
   image?: InputMaybe<SanityImageFilterInput>;
   eventDetails?: InputMaybe<SanitySingleEventDetailFilterListInput>;
@@ -4232,6 +4234,7 @@ export type SanityEventFieldsEnum =
   | '_key'
   | 'orderRank'
   | 'title'
+  | 'subtitle'
   | 'slug____key'
   | 'slug____type'
   | 'slug___current'
@@ -4494,6 +4497,7 @@ export type SanityEventFilterInput = {
   _key?: InputMaybe<StringQueryOperatorInput>;
   orderRank?: InputMaybe<StringQueryOperatorInput>;
   title?: InputMaybe<StringQueryOperatorInput>;
+  subtitle?: InputMaybe<StringQueryOperatorInput>;
   slug?: InputMaybe<SanitySlugFilterInput>;
   image?: InputMaybe<SanityImageFilterInput>;
   eventDetails?: InputMaybe<SanitySingleEventDetailFilterListInput>;
@@ -6192,7 +6196,7 @@ export type SingleEventQueryVariables = Exact<{
 }>;
 
 
-export type SingleEventQuery = { sanityEvent?: { title?: string | null, _rawImage?: any | null, _rawBlurb?: any | null, _rawDescription?: any | null, eventDetails?: Array<{ date?: any | null, url?: string | null, location?: string | null, subtitle?: string | null, buttonText?: string | null, active?: boolean | null } | null> | null } | null };
+export type SingleEventQuery = { sanityEvent?: { title?: string | null, subtitle?: string | null, _rawImage?: any | null, _rawBlurb?: any | null, _rawDescription?: any | null, eventDetails?: Array<{ date?: any | null, url?: string | null, location?: string | null, subtitle?: string | null, buttonText?: string | null, active?: boolean | null } | null> | null } | null };
 
 export type GatsbyImageSharpFixedFragment = { base64?: string | null, width: number, height: number, src: string, srcSet: string };
 
