@@ -43,19 +43,4 @@ export const createPages: GatsbyNode['createPages']  = async ({graphql, actions}
       )
   }
 
-  createRedirect({
-    force:true,
-    isPermanent: true,
-    fromPath:'/test',
-    toPath:'/test2',
-  })
-
-  createRedirect({
-     force:true,
-    isPermanent: true,
-    fromPath:'/cry-cleanse-flow',
-    toPath:'/events/cry-cleanse-flow',
-  })
-
-
 }
