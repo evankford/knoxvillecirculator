@@ -8,7 +8,7 @@ import MainLogo from "../Logo";
 import styled from "styled-components";
 import SignupForm from "../form/SignupForm";
 
-const q = graphql`query MyQuery {
+const q = graphql`query signupFormQuery {
   sanityAboutSettings {
     blurb {
       _type

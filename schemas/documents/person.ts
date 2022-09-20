@@ -1,4 +1,5 @@
 import { defineType } from "sanity";
+import { orderRankField } from '@sanity/orderable-document-list';
 
 import {BiUser} from "react-icons/bi"
 
@@ -8,6 +9,7 @@ const eventDocument = defineType({
   icon: BiUser,
   title: 'Person',
   fields: [
+    orderRankField({type: 'person'}),
     {
       type: 'string',
       name: 'name',
@@ -32,11 +34,15 @@ const eventDocument = defineType({
     {
       type: 'image',
       name: 'image',
+      options: {
+        hotspot: true
+      }
     },
     {
       type: 'boolean',
       name: 'aboutFeatured',
       title: 'Feature in about section',
+      initialValue: true,
     }
   ]
 })

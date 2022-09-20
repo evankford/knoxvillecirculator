@@ -16,7 +16,6 @@ const width = '15px';
 const CheckMain = styled.div`
   padding: 10px 0 10px 25px;
   line-height: 1.4;
-  font-size: 15px;
   @media (max-width: 600px) {
     font-size: 13px;
     padding-left: 25px;

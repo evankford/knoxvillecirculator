@@ -17,6 +17,7 @@ const ErrorWrap = styled.div`
   padding-right: 30px;
   margin: 0.5em 0;
   position:relative;
+  font-size: 1.5rem;
   flex: 0 0 100%;
 `
 

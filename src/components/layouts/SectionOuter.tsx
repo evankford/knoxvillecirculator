@@ -15,9 +15,10 @@ const Outer = styled.section<SectionOuterProps>`
   min-height: ${props =>  props.fullHeight ? 'calc(100 * var(--vh, 1vh))' : '0px' };
   display: flex;
   align-items: center;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0);
   box-sizing: border-box;
   justify-content: center;
-  padding: ${props => props.contentWidth == 'full' ? '0px' : '100px 20px'};
   background: ${props => props.background ? props.background : 'var(--color-white)'};
   color: ${props => props.lightText ? 'var(--color-white)' : 'var(--color-black)'};
 `;
@@ -26,7 +27,7 @@ const Inner = styled.div<SectionOuterProps>`
   width: 100%;
   margin: auto;
   max-width: ${ props => props.contentWidth == 'full' ? '100%' :
-   props.contentWidth == 'wide' ? 'clamp(900px, calc(780px + 15vw), 1350px)' :
+   props.contentWidth == 'wide' ? 'clamp(900px, calc(950px + 20vw), 1350px)' :
    props.contentWidth == 'small' ? 'clamp(600px, calc(550px + 9vw), 1000px)' :
    'clamp(800px, calc(600px + 12vw), 1280px)'
   };

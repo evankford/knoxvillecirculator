@@ -33,6 +33,14 @@ const config: GatsbyConfig = {
     }
   },
   {
+  resolve: "gatsby-plugin-sanity-image",
+  options: {
+    // Sanity project info (required)
+    projectId: "llb7r28p",
+    dataset: "production",
+  },
+},
+  {
     resolve: 'gatsby-plugin-typescript',
     options: {
      allowDeclareFields: true
@@ -50,6 +58,17 @@ const config: GatsbyConfig = {
   "gatsby-plugin-sass",
   "gatsby-plugin-styled-components",
   "gatsby-plugin-sitemap",
+  {
+    resolve: `gatsby-plugin-graphql-codegen`,
+    options: {
+      documentPaths: [
+        './src/**/*.{ts,tsx}',
+        './src/**/**/*.{ts,tsx}',
+        './node_modules/gatsby-*/**/*.js',
+        './gatsby-node.ts',
+      ],
+    }
+  },
   {
     resolve: 'gatsby-plugin-manifest',
     options: {

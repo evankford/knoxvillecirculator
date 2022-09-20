@@ -2,7 +2,6 @@ import React, {Component, createRef, type FormEvent, type ChangeEvent, useRef, M
 import styled from "styled-components";
 import EmailInput from "./EmailInput";
 import ArrowSubmit from "./ArrowSubmit";
-import ConsentCheckbox from "./Checkbox";
 import TagSelector from "./TagSelector";
 
 import { validate } from "email-validator";
@@ -58,6 +57,7 @@ const Line = styled.div`
 
 const P = styled.p`
   margin: 10px 0;
+  font-size: 15px;
   font-weight: 300;
   a { color: inherit; font-family:'FlexaEx'; font-weight:500;}
 `
@@ -70,9 +70,6 @@ interface SignupFormState {
   errorMessage: string | undefined
   tags:Array<'newsletter' | 'events'>
   emailValid: boolean;
-  consentAccepted: boolean
-  consentText: undefined | string
-  consentUrl:  undefined | string
 }
 
 
@@ -92,9 +89,6 @@ class SignupForm extends Component {
       emailValue: '',
       emailValid: false,
       errorMessage: undefined,
-      consentAccepted: true,
-      consentText: "We send around 1 email a month. " ,
-      consentUrl:  'https://circulatorknoxville.com/privacy'
     }
 
 
@@ -196,9 +190,8 @@ class SignupForm extends Component {
               <ArrowSubmit submitting={this.state.submitting} />
             </Line>
               <TagSelector handleChange={this.handleTagsChange} tags={this.state.tags}/>
-              <P>We send around 1 email a month. <a href="/privacy">That's it</a></P>
+              <P>We send a few emails a month. <a href="/privacy">That's it.</a></P>
           </Form>
-
       </FocusWrapper>
       <FormErrors errorMessage={this.state.errorMessage}/>
       <ValidationErrors submitted={this.state.submitted} validEmail={this.state.emailValid}/>

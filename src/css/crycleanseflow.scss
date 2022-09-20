@@ -1,0 +1,15 @@
+
+@font-face {
+  font-family: 'Mer';
+  src: url('../fonts/mer.woff2') format('woff2'),
+    url('../fonts/mer.woff') format('woff')
+  ;
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+}
+
+h1, h2, .h1, .h2 {
+  font-weight: 400;
+  font-family: "Mer";
+}
