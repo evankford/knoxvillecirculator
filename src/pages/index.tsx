@@ -15,7 +15,7 @@ export default function IndexPage(){
         <main>
           <title>Home Page</title>
           <Signup />
-          <FeaturedEvents/>
+          <FeaturedEvents />
           <About />
         </main>
       </Layout>

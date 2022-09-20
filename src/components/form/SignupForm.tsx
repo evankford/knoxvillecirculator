@@ -175,7 +175,7 @@ class SignupForm extends Component {
     if (this.state.success){
       return (
       <FocusWrapper toFocus={this.inputRef} >
-        <h2>You're In!</h2>
+        <h2 style={{margin:'1em 0'}}>You're In!</h2>
       </FocusWrapper>
       )
     }

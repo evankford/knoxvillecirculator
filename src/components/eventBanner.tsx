@@ -69,7 +69,7 @@ export default function EventBanner(props:EventBannerProps) {
           <CryCSS/>
         }
       </Suspense>
-        <HeroOuter>
+        <HeroOuter className={`template--${props.template}`}>
           {props.image &&
             <Pic>
               <Image alt={props.title} width={500} {...props.image}/>

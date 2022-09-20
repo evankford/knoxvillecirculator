@@ -8,20 +8,18 @@
   font-display: swap;
   font-weight: 400;
 }
+.template--cry-cleanse-flow{
 
-h1, h2, .h1, .h2, div.event-date {
-  font-weight: 400;
-  font-family: "Mer";
-}
+  h1, h2, .h1, .h2, div.event-date {
+    font-weight: 400;
+    font-family: "Mer";
+  }
 
-a.button, div.button{
-  font-weight: 400;
-  font-family: "Mer";
-  padding-top: 0.9em;
-  letter-spacing: 0.1em;
-}
-
-main{
-  background-color: var(--color-creme);
+  a.button, div.button{
+    font-weight: 400;
+    font-family: "Mer";
+    padding-top: 0.9em;
+    letter-spacing: 0.1em;
+  }
 }
 

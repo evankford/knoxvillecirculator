@@ -17,11 +17,12 @@ export default function Layout(props:LayoutProps){
 
 
   function toggle() {
-    setOpen(isOpen);
+    setOpen(!isOpen);
   }
+
   return (
     <MenuContext.Provider value={{ isOpen, toggle }}>
-      <Header />
+      <Header hideLogo={props.hideSignup}/>
       { props.children }
 
       {/* <BaseStyles/> */}

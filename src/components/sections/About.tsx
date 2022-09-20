@@ -260,7 +260,7 @@ export default function About() {
         repeatDelay: 1,
         scrollTrigger:{
           trigger: wrap.current,
-          toggleActions: "play none none none",
+          toggleActions: "play reverse none none",
           start: 'top 90%',
           end: '100%-=250px top',
           onEnterBack: ()=>{  if(window.innerWidth > 900){ uu.reverse().then(()=>aa.play())}},

@@ -1,3 +1,5 @@
+import React from "react";
+
 import { useStaticQuery,graphql } from "gatsby";
 import { propTypes } from "gatsby-plugin-image/dist/src/components/gatsby-image.server";
 import {FeaturedEventsQuery} from "../../../graphql-types";
@@ -34,11 +36,10 @@ query FeaturedEvents {
 
 export default function FeaturedEvents(){
   const data:FeaturedEventsQuery= useStaticQuery(q);
-
+console.log(data);
   return (
     <>
-
-      { data.allSanityEvent.edges.forEach((edge,i)=>(
+      { data.allSanityEvent.edges.map((edge,i)=> (
         <EventBanner key={i} template={edge.node.template} image={edge.node._rawImage} blurb={edge.node._rawBlurb} title={edge.node.title} subtitle={edge.node.subtitle} events={edge.node.eventDetails} />
       ))}
     </>
