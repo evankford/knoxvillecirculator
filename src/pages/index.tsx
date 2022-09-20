@@ -4,6 +4,7 @@ import Signup from "../components/sections/Signup"
 import About from "../components/sections/About"
 import Layout from "../components/Layout"
 import {SEO} from "../components/Seo";
+import FeaturedEvents from "../components/sections/FeaturedEvents";
 
 // markup
 
@@ -14,6 +15,7 @@ export default function IndexPage(){
         <main>
           <title>Home Page</title>
           <Signup />
+          <FeaturedEvents/>
           <About />
         </main>
       </Layout>

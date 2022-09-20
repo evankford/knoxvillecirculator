@@ -7,10 +7,7 @@ import SectionOuter from "../components/layouts/SectionOuter";
 import styled from "styled-components";
 import imageUrlBuilder from "@sanity/image-url";
 import client from "../sanityClient";
-import {PortableText} from '@portabletext/react';
 import Layout from "../components/Layout";
-import EventDetail, {type EventDetailProps}  from "../components/elements/eventDetail";
-import { parse, isPast, isAfter} from "date-fns";
 
 import EventBanner from "../components/eventBanner";
 const builder = imageUrlBuilder(client);
@@ -85,31 +82,14 @@ const HeroEvents= styled.div`
   margin:  auto auto 50px;
 `
 
-const GeneralTemplate=({data, pageContext } : PageProps<SingleEventQuery,{slug: string, layout: 'general' | 'cry-cleanse-flow'}>)=> {
-  console.log(data);
-  let events:EventDetailProps[]=[];
-
-
-    if (data.sanityEvent?.eventDetails) {
-        data.sanityEvent.eventDetails.map(e=>{
-        if (!e || !e.date){
-          return false;
-        }
-        let datee=parse(e.date, "yyyy-MM-dd HH:mm" , new Date());
-
-        events.push(Object.assign(e,{isPast: isPast(datee), date: datee }));
-      })
-    }
-
-    events.sort((a,b)=>isAfter(a.date, b.date)? -1  : 1 );
-
-
+const GeneralTemplate=({data, pageContext } : PageProps<SingleEventQuery,{slug: string, template: 'general' | 'cry-cleanse-flow'}>)=> {
+  console.log(pageContext)
   if (!data.sanityEvent) {
     return null;
   }
   return (
     <Layout>
-      <EventBanner image={data.sanityEvent._rawImage} title={data.sanityEvent.title} subtitle={data.sanityEvent.subtitle} events={events} blurb={data.sanityEvent._rawBlurb} color={pageContext.layout=='cry-cleanse-flow' ? 'var(--color-creme)' : 'var(--color-lightGray)'} />
+      <EventBanner template={pageContext.template} image={data.sanityEvent._rawImage} title={data.sanityEvent.title} subtitle={data.sanityEvent.subtitle} events={data.sanityEvent.eventDetails} blurb={data.sanityEvent._rawBlurb}  />
     </Layout>
   )
 }

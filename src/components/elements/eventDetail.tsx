@@ -30,14 +30,16 @@ const Subtitle = styled.div`
 flex: 0 0 auto;
 margin: 5px 10px;
 `
-const DateEl = styled.div`
+const DateEl = styled.div.attrs({className:'event-date'})`
 font-family:'FlexaEx';
 font-size:  2rem;
 flex: 0 0 auto;
 margin: 5px 10px;
 `
 
-const B= styled.a`
+const B= styled.a.attrs({
+  className:'button'
+})`
   text-decoration: none;
   display: inline-block;
   background: var(--color-magnolia);
@@ -58,7 +60,7 @@ const B= styled.a`
   }
 `
 
-const BnoLink= styled.div`
+const BnoLink= styled.div.attrs({className:'button'})`
   text-decoration: none;
   display: inline-block;
   background: var(--color-magnolia);
@@ -104,8 +106,6 @@ export default function EventDetail(props:EventDetailProps){
   if (props.buttonText){
     button= <BnoLink>{props.buttonText}</BnoLink>
   }
-  console.log(props.date);
-
   if (props.url){
     if( props.buttonText){
       button = <B href={props.url}>{props.buttonText}</B>
@@ -130,10 +130,8 @@ export default function EventDetail(props:EventDetailProps){
         { props.location &&
           <Title>{props.location}</Title>
         }
-
-
         { props.subtitle &&
-          <Title>{props.subtitle}</Title>
+          <Subtitle>{props.subtitle}</Subtitle>
         }
       </Details>
         <Links>

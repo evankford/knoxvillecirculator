@@ -1,10 +1,13 @@
-import React from "react";
+import React, {lazy, Suspense} from "react";
 import SectionOuter from "../components/layouts/SectionOuter";
 import styled from "styled-components";
 import Image from "gatsby-plugin-sanity-image";
 
 import EventDetail, {type EventDetailProps}  from "../components/elements/eventDetail";
 import {PortableText} from '@portabletext/react';
+import SortedEvents, {type EventDetailsInput} from "./SortedEvents";
+
+const CryCSS= lazy(()=>import('../css/CryCleanseFlowStyles'));
 
 const HeroOuter= styled.header`
   display: flex;
@@ -49,26 +52,27 @@ const HeroSubtitle= styled.h3`
   font-weight: 300;
 `
 
-const HeroEvents= styled.div`
-  flex: 1 1 400px;
-  margin:  auto auto 50px;
-`
 interface EventBannerProps {
-  color?: string
   image:any | undefined
   blurb:any | undefined
-  title: string| null| undefined
-  subtitle: string| null| undefined
-  events: EventDetailProps[]
+  title: string| null | undefined
+  subtitle: string| null | undefined
+  events: Array<EventDetailsInput| null> | undefined | null
+  template: string|undefined|null
 }
 
 export default function EventBanner(props:EventBannerProps) {
   return (
-    <SectionOuter background={props.color ? props.color : "var(--color-lightGray)"}>
+    <SectionOuter background={props.template ==  'cry-cleanse-flow'? 'var(--color-creme)': "var(--color-lightGray)"}>
+      <Suspense fallback={<></>}>
+        {props.template=='cry-cleanse-flow' &&
+          <CryCSS/>
+        }
+      </Suspense>
         <HeroOuter>
           {props.image &&
             <Pic>
-              <Image width={500} {...props.image}/>
+              <Image alt={props.title} width={500} {...props.image}/>
             </Pic>
           }
           <HeroContent>
@@ -84,14 +88,8 @@ export default function EventBanner(props:EventBannerProps) {
               />
             }
             </HeroContent>
-            {props.events.length > 0 &&
-              <HeroEvents>
-                {props.events.map(event=>(
-                  <EventDetail {...event} />
-                )
-
-                )}
-              </HeroEvents>
+            {props.events && props.events.length > 0 &&
+             <SortedEvents events={props.events} />
             }
         </HeroOuter>
       </SectionOuter>

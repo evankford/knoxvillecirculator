@@ -6185,6 +6185,11 @@ export type AboutSectionQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AboutSectionQuery = { sanityAboutSettings?: { title?: string | null, _rawDescription?: any | null } | null, sanityEventSettings?: { _rawDescription?: any | null } | null, allSanityPerson: { nodes: Array<{ _rawBlurb?: any | null, _rawImage?: any | null, name?: string | null, subtitle?: string | null }> } };
 
+export type FeaturedEventsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FeaturedEventsQuery = { allSanityEvent: { edges: Array<{ node: { title?: string | null, subtitle?: string | null, template?: string | null, _rawImage?: any | null, _rawBlurb?: any | null, eventDetails?: Array<{ url?: string | null, subtitle?: string | null, location?: string | null, date?: any | null, buttonText?: string | null, active?: boolean | null } | null> | null } }> } };
+
 export type SignupFormQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 

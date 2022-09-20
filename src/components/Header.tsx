@@ -17,18 +17,23 @@ const Inner = styled.div`
   max-width: 1400px;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 12px;
   color: var(--color-white);
 `
 
 const B = styled.button`
   appearance: none;
-  background: none;
-  color: white;
+  background: var(--color-magnolia);
+  color: var(--color-pink);
+
   border: none;
   font-size: 22px;
-`
+`;
+
+const Logo  = styled.a`
+  flex: 0 0 200px;
+`;
 
 
 export default function Header() {
@@ -39,14 +44,16 @@ export default function Header() {
     }
 
     return (
-<></>
-            // <Wrap>
-            //   <Inner>
-            //     <B onClick={()=>toggle()}>
-            //       {Icon}
-            //     </B>
-            //   </Inner>
-            // </Wrap>
+            <Wrap>
+              <Inner>
+              <Logo>
+
+              </Logo>
+                <B onClick={()=>toggle()}>
+                  {Icon}
+                </B>
+              </Inner>
+            </Wrap>
 
     )
   }
