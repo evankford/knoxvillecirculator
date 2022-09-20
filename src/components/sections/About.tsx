@@ -282,7 +282,6 @@ export default function About() {
             <Column>
 
                 <Pic>
-
                   <Papers/>
                 </Pic>
 
