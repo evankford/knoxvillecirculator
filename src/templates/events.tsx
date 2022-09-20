@@ -1,31 +1,32 @@
-import React from "react";
-import {SEO }from "../../components/Seo";
+import React, {useEffect, useState} from "react";
+import {SEO }from "../components/Seo";
 import { graphql, type PageProps, type HeadFC } from "gatsby"
-import type {SingleEventQuery} from "../../../graphql-types";
+import type {SingleEventQuery} from "../../graphql-types";
 import { toPlainText } from "@portabletext/react";
-import SectionOuter from "../../components/layouts/SectionOuter";
+import SectionOuter from "../components/layouts/SectionOuter";
 import styled from "styled-components";
 import imageUrlBuilder from "@sanity/image-url";
-import Image from "gatsby-plugin-sanity-image";
-import client from "../../sanityClient";
+import client from "../sanityClient";
 import {PortableText} from '@portabletext/react';
-import Layout from "../../components/Layout";
-import EventDetail, {type EventDetailProps}  from "../../components/elements/eventDetail";
-import { parseISO, isPast, isAfter} from "date-fns";
+import Layout from "../components/Layout";
+import EventDetail, {type EventDetailProps}  from "../components/elements/eventDetail";
+import { parse, isPast, isAfter} from "date-fns";
 
+import EventBanner from "../components/eventBanner";
 const builder = imageUrlBuilder(client);
 
 export const pageQuery= graphql<SingleEventQuery>`
  query SingleEvent($slug: String!) {
   sanityEvent(slug: {current: {eq: $slug}}){
   	eventDetails {
-        date
+        date(formatString: "yyyy-MM-DD HH:mm")
         url
         location
         subtitle
         buttonText
         active
       }
+      featured
       title
       subtitle
       _rawImage
@@ -84,56 +85,31 @@ const HeroEvents= styled.div`
   margin:  auto auto 50px;
 `
 
-const GeneralTemplate=({data } : PageProps<SingleEventQuery,{slug: string}>)=> {
+const GeneralTemplate=({data, pageContext } : PageProps<SingleEventQuery,{slug: string, layout: 'general' | 'cry-cleanse-flow'}>)=> {
+  console.log(data);
+  let events:EventDetailProps[]=[];
 
-  let events: Array<EventDetailProps> = [];
-  if (data.sanityEvent?.eventDetails) {console.log(data.sanityEvent.eventDetails);
-      data.sanityEvent.eventDetails.map(e=>{
-      if (!e || !e.date){
-        return false;
-      }
-      console.log(e.date);
-      let datee=parseISO(e.date);
 
-      events.push(Object.assign(e,{isPast: isPast(datee), date: datee }));
-    })
+    if (data.sanityEvent?.eventDetails) {
+        data.sanityEvent.eventDetails.map(e=>{
+        if (!e || !e.date){
+          return false;
+        }
+        let datee=parse(e.date, "yyyy-MM-dd HH:mm" , new Date());
+
+        events.push(Object.assign(e,{isPast: isPast(datee), date: datee }));
+      })
+    }
+
+    events.sort((a,b)=>isAfter(a.date, b.date)? -1  : 1 );
+
+
+  if (!data.sanityEvent) {
+    return null;
   }
-
-  events.sort((a,b)=>isAfter(a.date, b.date)? -1  : 1 );
-
-
   return (
     <Layout>
-      <SectionOuter background="var(--color-lightGray);">
-        <HeroOuter>
-          {data.sanityEvent?._rawImage &&
-            <Pic>
-              <Image width={500} {...data.sanityEvent._rawImage}/>
-            </Pic>
-          }
-          <HeroContent>
-            {data.sanityEvent?.title &&
-              <HeroTitle>{data.sanityEvent?.title}</HeroTitle>
-            }
-            {data.sanityEvent?.subtitle &&
-              <HeroSubtitle>{data.sanityEvent?.subtitle}</HeroSubtitle>
-            }
-            {data.sanityEvent?._rawBlurb &&
-                <PortableText
-                value={data.sanityEvent._rawBlurb}
-              />
-            }
-            </HeroContent>
-            {events.length > 0 &&
-              <HeroEvents>
-                {events.map(event=>(
-                  <EventDetail {...event} />
-                )
-              )}
-              </HeroEvents>
-            }
-        </HeroOuter>
-      </SectionOuter>
+      <EventBanner image={data.sanityEvent._rawImage} title={data.sanityEvent.title} subtitle={data.sanityEvent.subtitle} events={events} blurb={data.sanityEvent._rawBlurb} color={pageContext.layout=='cry-cleanse-flow' ? 'var(--color-creme)' : 'var(--color-lightGray)'} />
     </Layout>
   )
 }

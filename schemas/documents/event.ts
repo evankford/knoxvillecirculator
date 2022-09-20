@@ -35,6 +35,10 @@ const eventDocument = defineType({
       name: 'eventDetails'
     },
     {
+      type: 'boolean',
+      name: 'featured'
+    },
+    {
       type: 'array',
       name: 'blurb',
       title: 'Short Description',

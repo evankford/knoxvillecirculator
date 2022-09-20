@@ -1,5 +1,10 @@
-import SectionOuter from "../../components/layouts/SectionOuter";
+import React from "react";
+import SectionOuter from "../components/layouts/SectionOuter";
 import styled from "styled-components";
+import Image from "gatsby-plugin-sanity-image";
+
+import EventDetail, {type EventDetailProps}  from "../components/elements/eventDetail";
+import {PortableText} from '@portabletext/react';
 
 const HeroOuter= styled.header`
   display: flex;
@@ -48,33 +53,40 @@ const HeroEvents= styled.div`
   flex: 1 1 400px;
   margin:  auto auto 50px;
 `
+interface EventBannerProps {
+  color?: string
+  image:any | undefined
+  blurb:any | undefined
+  title: string| null| undefined
+  subtitle: string| null| undefined
+  events: EventDetailProps[]
+}
 
-
-export default function EventBanner(props) {
+export default function EventBanner(props:EventBannerProps) {
   return (
-    <SectionOuter background="var(--color-lightGray);">
+    <SectionOuter background={props.color ? props.color : "var(--color-lightGray)"}>
         <HeroOuter>
-          {data.sanityEvent?._rawImage &&
+          {props.image &&
             <Pic>
-              <Image width={500} {...data.sanityEvent._rawImage}/>
+              <Image width={500} {...props.image}/>
             </Pic>
           }
           <HeroContent>
-            {data.sanityEvent?.title &&
-              <HeroTitle>{data.sanityEvent?.title}</HeroTitle>
+            {props.title &&
+              <HeroTitle>{props.title}</HeroTitle>
             }
-            {data.sanityEvent?.subtitle &&
-              <HeroSubtitle>{data.sanityEvent?.subtitle}</HeroSubtitle>
+            {props.subtitle &&
+              <HeroSubtitle>{props?.subtitle}</HeroSubtitle>
             }
-            {data.sanityEvent?._rawBlurb &&
+            {props.blurb &&
                 <PortableText
-                value={data.sanityEvent._rawBlurb}
+                value={props.blurb}
               />
             }
             </HeroContent>
-            {events.length > 0 &&
+            {props.events.length > 0 &&
               <HeroEvents>
-                {events.map(event=>(
+                {props.events.map(event=>(
                   <EventDetail {...event} />
                 )
 
