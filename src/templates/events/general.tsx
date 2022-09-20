@@ -44,6 +44,6 @@ export const Head:HeadFC<SingleEventQuery>= ({data, location}) =>{
     img =builder.image(data.sanityEvent?._rawImage).width(1600).height(900).crop('center').url();
   }
   return (
-    <SEO title={data.sanityEvent?.title} image={img} description={data.sanityEvent?._rawDescription ? toPlainText(data.sanityEvent?._rawDescription) : false} pathname={location.pathname}/>
+    <SEO title={data.sanityEvent?.title} image={img} description={data.sanityEvent?._rawDescription ? toPlainText(data.sanityEvent?._rawDescription) : undefined} pathname={location.pathname}/>
   )
 }

@@ -23,15 +23,21 @@ export default async function handler(
     let tags = req.body.tags;
     tags.push('Website Newsletter Signup');
     try{
-      const responded = await client.lists.addListMember(process.env.MAILCHIMP_LIST_ID!,
-        {email_address,
-        status: "subscribed",
-        tags,
-        marketing_permissions: [{
-          marketing_permission_id:  '01d50e3e43',
-          enabled:true,
-        }]
-      }
+
+
+
+      // const responded = await client.lists.addListMember(process.env.MAILCHIMP_LIST_ID!,
+      //   {email_address,
+      //   status: "subscribed",
+      //   tags,
+      //   marketing_permissions: [{
+      //     marketing_permission_id:  '01d50e3e43',
+      //     enabled:true,
+      //   }]
+      // }
+      //@ts-ignore
+        const responded = await client.lists.getListMembersInfo(process.env.MAILCHIMP_LIST_ID!,
+
       )
       res.json({success: true, message:'Signed up!'})
     } catch(e){

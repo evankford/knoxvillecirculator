@@ -1,7 +1,7 @@
 import React from "react";
-import {SEO }from "../../components/Seo";
+import {SEO }from "../../Seo";
 import { graphql, type PageProps } from "gatsby"
-import type {SingleEventQuery} from "../../../graphql-types";
+import type {SingleEventQuery} from "../../../../graphql-types";
 
 // export const pageQuery= graphql<SingleEventQuery>`
 //  query SingleEvent($slug: String!) {

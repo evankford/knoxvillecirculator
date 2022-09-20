@@ -13,7 +13,7 @@ import PersonRow from "../elements/PersonRow";
 import {AboutSectionQuery} from "../../../graphql-types";
 //@ts-ignore
 
-import ReactHtmlParser from "react-html-parser";
+import ReactHtmlParser from "html-react-parser";
 
 gsap.registerPlugin( ScrollTrigger);
 
@@ -73,7 +73,7 @@ z-index:10;
     }
   }
 
-   @media screen and (min-width: 1000px) {
+   @media screen and (min-width: 900px) {
     position: fixed;
      font-size:8rem;
     margin: 0;
@@ -131,15 +131,14 @@ const Wrap= styled.div`
   padding: 50px 0;
   color: var(--color-white);
   position: relative;
-  margin: 0 0 50px;
 
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: 900px) {
     padding-left: 35vw;
   }
 `
 
 
-const Pic = styled.figure`
+const Pic = styled.div`
   display: block;
   width:70px;
   float: left;
@@ -224,44 +223,54 @@ export default function About() {
       {opacity: 0});
     }
     if(header.current && header2.current){
-      gsap.fromTo(header.current.querySelectorAll('span'), {id:'Starter',
-      opacity: 0,
-      yPercent: 55,
-    },
-    {
-      opacity: 1,
-      yPercent:0,
-      stagger: 0.15,
-      repeatDelay: 1,
-      scrollTrigger:{
-        trigger: wrap.current,
-        toggleActions: "play reverse play none",
-        start: 'top 90%',
-        end: '100%-=250px top'
+
+
+      const uu = gsap.fromTo(header2.current.querySelectorAll('span'), {id:'Starter',
+        opacity: 0,
+        yPercent: 55,
       },
-    });
+      {
+        opacity: 1,
+        paused: true,
+        yPercent:0,
+        stagger: 0.09,
+      });
 
-        gsap.fromTo(header2.current.querySelectorAll('span'), {id:'Starter',
-          opacity: 0,
-          yPercent: 55,
+
+      const aa = gsap.fromTo(header.current.querySelectorAll('span'), {id:'Starter',
+        opacity: 0,
+        yPercent: 55,
+      },
+      {
+        opacity: 1,
+        yPercent:0,
+        stagger: 0.09,
+        repeatDelay: 1,
+        paused: true
+      });
+
+      gsap.fromTo(header.current.querySelectorAll('span'), {id:'Starter',
+        opacity: 0,
+        yPercent: 55,
+      },
+      {
+        opacity: 1,
+        yPercent:0,
+        stagger: 0.15,
+        repeatDelay: 1,
+        scrollTrigger:{
+          trigger: wrap.current,
+          toggleActions: "play none none none",
+          start: 'top 90%',
+          end: '100%-=250px top',
+          onEnterBack: ()=>{  if(window.innerWidth > 900){ uu.reverse().then(()=>aa.play())}},
+          onLeave: ()=>{  if(window.innerWidth > 900){aa.reverse().then(()=>uu.play())}else{ uu.play();}},
         },
-        {
-          opacity: 1,
-          yPercent:0,
-          stagger: 0.15,
-          repeatDelay: 1,
-          scrollTrigger:{
-            trigger: wrap2.current,
-            toggleActions: "play none play reverse",
-            start: '0%-=150px',
-            end: 'bottom 90%'
-          },
-        });
+      });
 
-    }
         ScrollTrigger.refresh();
 
-
+    }
   })
    return (
     <SectionOuter fullHeight contentWidth="wide" background={`linear-gradient(to bottom, var(--color-black), var(--color-magnolia))`}>
@@ -301,8 +310,8 @@ export default function About() {
       <Wrap ref={wrap2}>
         <H ref={header2}>{ ReactHtmlParser(basicSplit('Who We Are'))}</H>
         {/* <H ref={header2}>{ ReactHtmlParser(basicSplit('Who We Are'))}</H> */}
-        {data.allSanityPerson.nodes.map(person=> (
-          <PersonRow {...person} />
+        {data.allSanityPerson.nodes.map((person, i)=> (
+          <PersonRow {...person} key={i} />
         ))}
       </Wrap>
     </SectionOuter>

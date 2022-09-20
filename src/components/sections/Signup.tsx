@@ -41,7 +41,6 @@ const Content = styled.div`
   @media screen and (max-width: 600px){
     padding-left: 5px;
     padding-right: 5px;
-
   }
 `
 
@@ -63,14 +62,12 @@ const Wrap = styled.div`
 
 export default function Intro() {
   const data:any = useStaticQuery(q);
-  console.log(data.sanityAboutSettings.blurb);
   return (
     <SectionOuter fullHeight contentWidth="full" background={`var(--color-seafoam)`}>
       <Wrap>
         <MainLogo/>
         <Content>
           <TitleH1>
-
           <PortableText
               value={data.sanityAboutSettings.blurb}
             />
@@ -79,6 +76,5 @@ export default function Intro() {
         </Content>
       </Wrap>
     </SectionOuter>
-
   )
 }

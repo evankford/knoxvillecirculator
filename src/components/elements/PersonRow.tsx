@@ -24,12 +24,10 @@ const Pict = styled.picture`
 
 `
 
-const Text = styled.text`
+const Text = styled.div`
   flex: 1 1 300px;
   text-align: left;
 `
-
-
 
 interface PersonProps {
 
@@ -44,7 +42,7 @@ export default function PersonRow(props: PersonProps) {
 
     <Row>
       {props._rawImage &&
-        <Pict><Image {...props._rawImage} width={500} height={500} config={{width: 500, height: 500, fit: 'crop', crop:'focalpoint'}} /></Pict>
+        <Pict><Image {...props._rawImage} width={500} height={500} alt={props.name} config={{width: 500, height: 500, fit: 'crop', crop:'focalpoint'}} /></Pict>
       }
       <Text>
         <h2>{props.name}</h2>

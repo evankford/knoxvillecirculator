@@ -34,12 +34,10 @@ const Inner = styled.div<SectionOuterProps>`
 `;
 
 export default function SectionOuter(props: SectionOuterProps) {
-  console.log(props);
   const children = props.children;
   return (
     <Outer {...props}>
       <Inner {...props}>
-
         { children}
       </Inner>
     </Outer>

@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled, {keyframes} from "styled-components";
-import Tilt from "react-parallax-tilt"
 import Svg from "../images/bandp.svg";
 
 const swing = keyframes`
@@ -19,7 +18,7 @@ const swing = keyframes`
   }
 `
 
-const Logo = styled.figure`
+const Logo = styled.picture`
   flex: 1 1 700px;
   max-width: clamp(150px, 40vmax,  60vw);
   @media (min-width: 800px) {
@@ -37,9 +36,7 @@ const Logo = styled.figure`
 export default function MainLogo() {
   return(
     <Logo>
-      {/* <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable={false}  trackOnWindow={true} gyroscope={true} tiltReverse={true}> */}
         <Svg/>
-      {/* </Tilt> */}
     </Logo>
   )
 }

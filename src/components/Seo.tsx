@@ -2,9 +2,9 @@ import React from "react"
 import { useSiteMetadata } from "../hooks/use-site-metadata"
 
 interface SEOProps{
-  title?: string,
-  description?: string,
-  image?: string,
+  title?: string | null | undefined,
+  description?:  string | null | undefined,
+  image?: string | null | undefined,
   pathname?:string
   children?: JSX.Element[]
 }

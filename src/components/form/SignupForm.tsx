@@ -105,11 +105,11 @@ class SignupForm extends Component {
 
 
   async handleSubmit(evt:FormEvent<HTMLFormElement>) {
-    console.log('Submitting');
+
     evt.preventDefault();
     this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: true,errorMessage:undefined}));
     if (this.state.emailValid && this.state.tags.length> 0) {
-      console.log("Trying to submit ")
+
       this.setState(prev=>Object.assign(prev, { submitting: true }));
       // try to submit
       const resp = await fetch(`/api/signup/${this.state.emailValue}`, {
@@ -126,7 +126,6 @@ class SignupForm extends Component {
         return;
       } else {
         this.setState(prev=>Object.assign(prev, { success:false, submitted: true, submitting: false, errorMessage:"Something went wrong. Please try again."}));
-        console.log(j)
         return;
       }
     } else {
@@ -149,7 +148,6 @@ class SignupForm extends Component {
     }
     this.setState((prev:SignupFormState)=>{
       let tags = prev.tags;
-      console.log(e.target.id, e.target.checked)
        if (!e.target ||  !e.target.id || (e.target.id != 'events' && e.target.id != 'newsletter')) {
           return prev;
         }

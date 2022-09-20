@@ -15,7 +15,6 @@ export default function IndexPage(){
           <title>Home Page</title>
           <Signup />
           <About />
-
         </main>
       </Layout>
     )

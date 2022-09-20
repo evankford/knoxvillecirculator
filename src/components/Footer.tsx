@@ -2,8 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import SignupForm from './form/SignupForm';
 
-const Wrap = styled.footer`
-  /* position: fixed; */
+const FWrap = styled.footer`
   padding: 30px;
   box-sizing: border-box;
   background: var(--color-black);
@@ -14,7 +13,6 @@ const Wrap = styled.footer`
   align-items: flex-end;
   justify-content: space-evenly;
   z-index: 100;
-
 `;
 
 const Col= styled.div`
@@ -24,18 +22,15 @@ const Col= styled.div`
 `
 
 export default function Footer() {
-
-
-      return (
-          <Wrap >
-            <Col>
-              <SignupForm/>
-            </Col>
-            <Col>
-              © { new Date().getFullYear()} Knoxville Circulator. All rights reserved.
-            </Col>
-          </Wrap>
-
-      )
+  return (
+      <FWrap >
+        <Col>
+          <SignupForm/>
+        </Col>
+        <Col>
+          © { new Date().getFullYear()} Knoxville Circulator. All rights reserved.
+        </Col>
+      </FWrap>
+  )
 }
 
