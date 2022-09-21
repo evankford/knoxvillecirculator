@@ -36,7 +36,6 @@ query FeaturedEvents {
 
 export default function FeaturedEvents(){
   const data:FeaturedEventsQuery= useStaticQuery(q);
-console.log(data);
   return (
     <>
       { data.allSanityEvent.edges.map((edge,i)=> (

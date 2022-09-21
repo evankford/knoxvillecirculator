@@ -81,54 +81,47 @@ z-index:10;
     right: 65vw;
     max-width:500px;
     width: 35vw;
-    padding-left: 50px;
+    padding-left: min(calc(10px + 1vw), 50px);
     top: 50%;
     transform: translate3d(0, -50%, 0);
    }
 `
 
-const Column = styled.div`
-  z-index:2;
-  position: relative;
-  flex: 1 1 300px;
-  margin: 20px auto;
-  max-width: 700px;
-  padding: 0 20px;
-  @media screen and (min-width: 900px) {
-   padding: 20px 20px
-  }
-  margin: 10px;
-  height: auto;
-  /* background: var(--color-white); */
-  border-radius: 5px;;
-  z-index: 2;
-  position: relative;
-  p{
-    text-align: justify;
-  }
-  align-items: stretch;
-  @media screen and (min-width: 1100px) {
-    flex-basis: 450px;
-  }
-  @media screen and (max-width: 600px){
-    padding-left: 5px;
-    padding-right: 5px;
-
-  }
-`
 const Row = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  @media screen and (max-width: 700px) {
-      align-items: flex-start;
+    z-index:2;
+    position: relative;
+    flex: 1 1 300px;
+    margin: 20px auto;
+    max-width: 660px;
+    padding: 0 20px;
+    @media screen and (min-width: 900px) {
+    padding: 20px 20px
+    }
+    @media (min-width: 1100px) {
+      padding-left: 150px;
+    }
+    height: auto;
+    /* background: var(--color-white); */
+    border-radius: 5px;;
+    z-index: 2;
+    position: relative;
+    p{
+      text-align: justify;
+    }
+    align-items: stretch;
+    @media screen and (min-width: 1100px) {
+      flex-basis: 450px;
+    }
+    @media screen and (max-width: 600px){
+      padding-left: 5px;
+      padding-right: 5px;
+
     }
 `
 
 const Wrap= styled.div`
   text-align: center;
-  padding: 50px 0;
+  padding: 50px 10px;
   color: var(--color-white);
   position: relative;
 
@@ -140,14 +133,18 @@ const Wrap= styled.div`
 
 const Pic = styled.div`
   display: block;
-  width:70px;
-  float: left;
-    @media screen and (min-width:600px) {
-  width:100px;
-    }
-  flex: 1 0 70px;
-      margin: 0 8% 0 0;
   position: relative;
+  flex: 0 0 70px;
+  z-index:0;
+  @media screen and (min-width:600px) {
+    flex: 0 0 80px;
+  }
+  @media (min-width: 1100px) {
+    flex: 0 0 100px;
+    height: 120px;
+    margin-bottom: -60px;
+  }
+  margin: 0 4% 0 0;
   overflow: visible;
   box-sizing: border-box;
   &::before{
@@ -174,6 +171,9 @@ svg{
 
 const HH = styled.h2`
   flex: 0 0 auto;
+  position: relative;
+
+  z-index:3;
   color: var(--color-whiteGreen);
 
   @media screen and (min-width:600px) {
@@ -184,13 +184,22 @@ const HH = styled.h2`
 
     letter-spacing: -0.05em;
     /* text-transform: uppercase; */
-    text-align:  left;
-    margin:   0px 0 auto 20px;
+    margin:   auto 0 auto 20px;
     font-weight: 500;
     /* letter-spacing: 0.04em; */
 
 
+`;
 
+const Title = styled.header`
+  position: relative;
+  z-index: 2;
+  text-align: left;
+  display: flex;
+  @media (min-width: 1100px) {
+    align-items: flex-end;
+    margin: 0 0 0 -152px;
+  }
 `
 
 function basicSplit(text:string):string{
@@ -224,49 +233,84 @@ export default function About() {
     }
     if(header.current && header2.current){
 
+      let mm = gsap.matchMedia();
 
-      const uu = gsap.fromTo(header2.current.querySelectorAll('span'), {id:'Starter',
-        opacity: 0,
-        yPercent: 55,
-      },
-      {
-        opacity: 1,
-        paused: true,
-        yPercent:0,
-        stagger: 0.09,
-      });
+      mm.add('(min-width: 900px)', ()=>{
 
-
-      const aa = gsap.fromTo(header.current.querySelectorAll('span'), {id:'Starter',
-        opacity: 0,
-        yPercent: 55,
-      },
-      {
-        opacity: 1,
-        yPercent:0,
-        stagger: 0.09,
-        repeatDelay: 1,
-        paused: true
-      });
-
-      gsap.fromTo(header.current.querySelectorAll('span'), {id:'Starter',
-        opacity: 0,
-        yPercent: 55,
-      },
-      {
-        opacity: 1,
-        yPercent:0,
-        stagger: 0.15,
-        repeatDelay: 1,
-        scrollTrigger:{
-          trigger: wrap.current,
-          toggleActions: "play reverse none none",
-          start: 'top 90%',
-          end: '100%-=250px top',
-          onEnterBack: ()=>{  if(window.innerWidth > 900){ uu.reverse().then(()=>aa.play())}},
-          onLeave: ()=>{  aa.reverse().then(()=>uu.play())},
+        const uu = gsap.fromTo(header2!.current!.querySelectorAll('span'), {id:'Starter',
+          opacity: 0,
+          yPercent: 55,
         },
-      });
+        {
+          opacity: 1,
+          paused: true,
+          yPercent:0,
+          stagger: 0.09,
+        });
+
+
+        const aa = gsap.fromTo(header!.current!.querySelectorAll('span'), {id:'Starter',
+          opacity: 0,
+          yPercent: 55,
+        },
+        {
+          opacity: 1,
+          yPercent:0,
+          stagger: 0.09,
+          repeatDelay: 1,
+          paused: true
+        });
+
+        gsap.fromTo(header!.current!.querySelectorAll('span'), {id:'Starter',
+          opacity: 0,
+          yPercent: 55,
+        },
+        {
+          opacity: 1,
+          yPercent:0,
+          stagger: 0.15,
+          repeatDelay: 1,
+          scrollTrigger:{
+            trigger: wrap.current,
+            toggleActions: "play reverse none none",
+            start: 'top 90%',
+            end: '100%-=250px top',
+            onEnterBack: ()=>{  if(window.innerWidth > 900){ uu.reverse().then(()=>aa.play())}},
+            onLeave: ()=>{  aa.reverse().then(()=>uu.play())},
+          },
+        });
+
+
+      })
+
+      mm.add('(max-width: 899px)', ()=> {
+        gsap.fromTo(header2!.current!.querySelectorAll('span'), {id:'Starter',
+          opacity: 0,
+          yPercent: 55,
+        },
+        {
+          opacity: 1,
+          paused: true,
+          yPercent:0,
+          stagger: 0.09,
+          scrollTrigger: {
+            trigger: header2.current
+          }
+        });
+        gsap.fromTo(header!.current!.querySelectorAll('span'), {id:'Starter',
+          opacity: 0,
+          yPercent: 55,
+        },
+        {
+          opacity: 1,
+          paused: true,
+          yPercent:0,
+          stagger: 0.09,
+          scrollTrigger: {
+            trigger: header.current
+          }
+        });
+      })
 
         ScrollTrigger.refresh();
 
@@ -279,31 +323,30 @@ export default function About() {
         {/* <H ref={header2}>{ ReactHtmlParser(basicSplit('Who We Are'))}</H> */}
 
           <Row >
-            <Column>
+            <Title>
 
                 <Pic>
                   <Papers/>
                 </Pic>
 
                 <HH>The Circulator:</HH>
+            </Title>
 
                 <PortableText
                     value={data.sanityAboutSettings?._rawDescription}
                     />
-            </Column>
                     </Row>
           <Row>
-
-            <Column>
-              <Pic style={{marginBottom: '-4.5%'}}>
-                <Balloons/>
-              </Pic>
+              <Title>
+                <Pic >
+                  <Balloons/>
+                </Pic>
               <HH>Events:</HH>
+              </Title>
               <PortableText
                   value={data.sanityEventSettings?._rawDescription}
                   />
 
-            </Column>
           </Row>
       </Wrap>
       <Wrap ref={wrap2}>

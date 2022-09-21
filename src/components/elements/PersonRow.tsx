@@ -8,14 +8,29 @@ const Row = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 24px 0;
+  @media (max-width: 700px) {
+    margin: 12px 0;
+  }
+  align-items: center;
+  justify-content: center;
 `
 const Pict = styled.picture`
   margin: 18px;
-  flex: 0 0 200px;
-  height: 200px;
+  flex: 0 0 150px;
+  height: 150px;
   border-radius: 100px;
   overflow: hidden;
   border: 6px solid var(--color-seafoam);
+
+  @media (max-width: 700px) {
+    margin: auto 0px auto -10px;
+    flex: 0 0 100px;
+    height: 100px;
+  }
+
+  @media (min-width: 1100px) {
+    margin-left: -38px;
+  }
 
   img {
     width: 100%;
@@ -24,8 +39,27 @@ const Pict = styled.picture`
 
 `
 
+const HH = styled.h2`
+  flex: 0 0 auto;
+  margin: 0 0 0.1em;
+  color: var(--color-whiteGreen);
+
+  @media screen and (min-width:600px) {
+
+    font-size: 4.8rem;
+  }
+    font-weight: 700;
+
+    letter-spacing: -0.05em;
+    /* text-transform: uppercase; */
+    text-align:  left;
+    font-weight: 500;
+    /* letter-spacing: 0.04em; */
+`
+
 const Text = styled.div`
-  flex: 1 1 300px;
+  flex: 2 1 200px;
+  padding: 20px;
   text-align: left;
 `
 
@@ -45,7 +79,7 @@ export default function PersonRow(props: PersonProps) {
         <Pict><Image {...props._rawImage} width={500} height={500} alt={props.name} config={{width: 500, height: 500, fit: 'crop', crop:'focalpoint'}} /></Pict>
       }
       <Text>
-        <h2>{props.name}</h2>
+        <HH>{props.name}</HH>
         <PortableText value={props._rawBlurb}/>
       </Text>
     </Row>

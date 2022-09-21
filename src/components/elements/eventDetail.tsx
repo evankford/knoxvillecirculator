@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {format, formatRelative, parseISO, isPast} from "date-fns";
+import {format, isValid} from "date-fns/esm";
 export interface EventDetailProps {
   active?:boolean |undefined|null,
   date: Date,
@@ -122,7 +122,7 @@ export default function EventDetail(props:EventDetailProps){
 
     <EventDetailWrap>
       <Details>
-        { props.date  &&
+        { props.date && isValid(props.date) &&
           <DateEl>
             {format(props.date, "EEE, MMM do @ p")}
           </DateEl>

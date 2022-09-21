@@ -23,9 +23,13 @@ const HeroOuter= styled.header`
 `
 
 const Pic=styled.picture`
-  margin: 60px;
+  margin: 10px 30px;
   flex: 1 1 300px;
-  max-width: 500px;
+  max-width: 350px;
+  @media (min-width: 800px) {
+    max-width: 500px;
+    margin: 60px;
+  }
   img{
     max-height: 500px;
     width: 100%;
